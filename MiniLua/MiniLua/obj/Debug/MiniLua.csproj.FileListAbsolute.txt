@@ -1,0 +1,5 @@
+C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\bin\Debug\MiniLua.dll
+C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\bin\Debug\MiniLua.pdb
+C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\obj\Debug\MiniLua.csprojResolveAssemblyReference.cache
+C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\obj\Debug\MiniLua.dll
+C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\obj\Debug\MiniLua.pdb
