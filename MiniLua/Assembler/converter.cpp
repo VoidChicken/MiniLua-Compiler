@@ -12,11 +12,13 @@ namespace Assembler {
 			lines->Add(line);
 		}
 		void finish(string dest) {
-			StreamWriter^ sw = File::CreateText(dest + ".c");
+			
+			StreamWriter^ sw = File::CreateText(dest + "_out.c");
 			for (int i = 0; i < lines->Count; i++) {
-				sw->WriteLine(lines[i]);
+				sw->WriteLine(lines->ToArray()[i]);
 			}
-			Process::Start("cl " + dest + ".c");
+			sw->Close();
+			//Process::Start("cl " + dest + ".c");
 		}
 	};
 }

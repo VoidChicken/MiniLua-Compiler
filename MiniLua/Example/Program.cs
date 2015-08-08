@@ -7,7 +7,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            Parser.Parse(File.ReadAllText("test.ml"));
+            Parser.Parse(File.ReadAllText("test.ml")).close("test");
         }
     }
 }

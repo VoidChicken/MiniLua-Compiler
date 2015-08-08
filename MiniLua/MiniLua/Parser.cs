@@ -6,9 +6,20 @@ namespace MiniLua
     public sealed class Parser
     {
         Converter c = new Converter();
-        List<Variable<Object>> variables = new List<Variable<Object>>();
-        Keyword[] keyWords = 
-            
+        public struct t
+        {
+            public t(Parser p)
+            {
+                this.p = p;
+            }
+            Parser p;
+            public void close(string to)
+            {
+                p.c.finish(to);
+            }
+        }
+        Keyword[] keyWords =
+
           {
             new Keyword() {  keyWord = "if"     },
             new Keyword() {  keyWord = "then"   },
@@ -17,13 +28,17 @@ namespace MiniLua
             new Keyword() {  keyWord = "while"  },
             new Keyword() {  keyWord = "do"     },
             new Keyword() {  keyWord = "end"    },
+            new Keyword() {  keyWord = "import" },
+            new Keyword() {  keyWord = "local"  }
         };
         static Parser p = new Parser();
-        public static void Parse(string input)
+        public static t Parse(string input)
         {
             string[] lines = input.Split(';');
             p.parse(lines);
+            return new t(p);
         }
+        
         public bool parse(string[] lines)
         {
             foreach (string line in lines)
@@ -57,17 +72,6 @@ namespace MiniLua
             thangy = null;
             return false;
         }
-        Variable<Object> match(Variable<Object> v)
-        {
-            foreach (Variable<Object> av in variables)
-            {
-                if (av.name == v.name)
-                {
-                    return av ;
-                }
-            }
-            return null;
-        }
         public void assemble(string line)
         {
             if (line == null) return;
@@ -92,6 +96,18 @@ namespace MiniLua
                 else if (ifdoes == "elif")
                 {
                     c.processLine("}else if (");
+                }
+                else if (ifdoes == "import")
+                {
+                    c.processLine("#include <"+lineChunks[1]);
+                }
+                else if (ifdoes == "local")
+                {
+                    c.processLine("#define " + lineChunks[1].Split('=')[0] + " " + lineChunks[1].Split('=')[1]);
+                }
+                else if (ifdoes == "function")
+                {
+                    c.processLine("int " + lineChunks[1] + "{");
                 }
             } else
             {
