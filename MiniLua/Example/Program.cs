@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using MiniLua;
 namespace Example
 {
@@ -10,7 +7,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-           while (true) Parser.Parse(Console.ReadLine(), 10, 22);
+            Parser.Parse(File.ReadAllText("test.ml"));
         }
     }
 }

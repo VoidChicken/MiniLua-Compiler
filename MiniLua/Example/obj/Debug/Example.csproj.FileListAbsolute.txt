@@ -6,3 +6,5 @@ C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\Example\bin\Debug\MiniLua.pdb
 C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\Example\obj\Debug\Example.csprojResolveAssemblyReference.cache
 C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\Example\obj\Debug\Example.exe
 C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\Example\obj\Debug\Example.pdb
+C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\Example\bin\Debug\Assembler.dll
+C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\Example\bin\Debug\Assembler.pdb
