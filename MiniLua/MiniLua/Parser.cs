@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Assembler;
 namespace MiniLua
 {
     public sealed class Parser
     {
+        Converter c = new Converter();
         List<Variable<Object>> variables = new List<Variable<Object>>();
         Keyword[] keyWords = 
             
@@ -14,26 +15,20 @@ namespace MiniLua
             new Keyword() {  keyWord = "else"   },
             new Keyword() {  keyWord = "elif"   },
             new Keyword() {  keyWord = "while"  },
-            new Keyword() {  keyWord = "true"   },
-            new Keyword() {  keyWord = "false"  },
             new Keyword() {  keyWord = "do"     },
             new Keyword() {  keyWord = "end"    },
         };
         static Parser p = new Parser();
-        public static void Parse(string input,int cur, int linaes)
+        public static void Parse(string input)
         {
             string[] lines = input.Split(';');
-            p.parse(lines, cur,linaes);
+            p.parse(lines);
         }
-        public bool parse(string[] lines, int cur ,int end)
+        public bool parse(string[] lines)
         {
             foreach (string line in lines)
             {
                 return parseLine(line);
-            }
-            if (openBody && cur == end)
-            {
-                return false;
             }
             return true;
         }
@@ -41,7 +36,7 @@ namespace MiniLua
         {
             try
             {
-                execute(line);
+                assemble(line);
             }
             catch
             {
@@ -49,7 +44,6 @@ namespace MiniLua
             }
             return true;
         }
-        bool openBody = false;
         bool equalsAny(object thing, out string thangy)
         {
             foreach (Keyword k in keyWords)
@@ -74,7 +68,7 @@ namespace MiniLua
             }
             return null;
         }
-        public void execute(string line)
+        public void assemble(string line)
         {
             if (line == null) return;
             string[] lineChunks = line.Split(' ');
@@ -84,18 +78,24 @@ namespace MiniLua
             {
                 if (ifdoes == "while")
                 {
-                    Variable<Object> v = new Variable<object>();
-                    if (bool.Parse(lineChunks[1]) || (v = match(new Variable<object>() { name = lineChunks[1]})).toBool())
-                    {
-                        if (lineChunks[2] != "do")
-                        {
-                            throw new Exception("Expecting: do");
-                        } else
-                        {
-                            openBody = true;
-                        }
-                    }
+                    c.processLine("while (");
                 }
+                else if (ifdoes == "do" || ifdoes == "then") {
+                    c.processLine(ifdoes == "do"?"){":"{");
+                }
+                else if (ifdoes == "end") {
+                    c.processLine("}");
+                } else if (ifdoes == "else")
+                {
+                    c.processLine("}else{");
+                }
+                else if (ifdoes == "elif")
+                {
+                    c.processLine("}else if (");
+                }
+            } else
+            {
+                c.processLine(line + ";");
             }
         }
     }
