@@ -1,5 +1,4 @@
 import stdio.h>
-
-function main()
-   printf("hello")
+local apple="hello"
+function main() then
 end

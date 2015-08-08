@@ -29,7 +29,8 @@ namespace MiniLua
             new Keyword() {  keyWord = "do"     },
             new Keyword() {  keyWord = "end"    },
             new Keyword() {  keyWord = "import" },
-            new Keyword() {  keyWord = "local"  }
+            new Keyword() {  keyWord = "local"  },
+            new Keyword() { keyWord = "function"}
         };
         static Parser p = new Parser();
         public static t Parse(string input)
@@ -107,7 +108,7 @@ namespace MiniLua
                 }
                 else if (ifdoes == "function")
                 {
-                    c.processLine("int " + lineChunks[1] + "{");
+                    c.processLine("int " + lineChunks[1]);
                 }
             } else
             {

@@ -4,4 +4,3 @@ C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\obj\Debug\MiniLua.dll
 C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\obj\Debug\MiniLua.pdb
 C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\bin\Debug\Assembler.dll
 C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\bin\Debug\Assembler.pdb
-C:\Users\Shayan\Documents\MiniLua-Compiler\MiniLua\MiniLua\obj\Debug\MiniLua.csprojResolveAssemblyReference.cache
